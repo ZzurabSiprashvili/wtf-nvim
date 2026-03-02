@@ -1,0 +1,18 @@
+local map = vim.keymap.set
+
+map("n", "<leader>,", "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>", { desc = "Switch Buffer" })
+map("n", "<leader>?", "<cmd>Telescope live_grep<cr>", { desc = "Live Grep" })
+map("n", "<leader><space>", "<cmd>Telescope find_files<cr>", { desc = "Find Files" })
+map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Find Files" })
+map("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Recent Files" })
+map("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", { desc = "Help Tags" })
+map("n", "<leader>fd", "<cmd>Telescope diagnostics<cr>", { desc = "Diagnostics" })
+map("n", "<leader>fw", "<cmd>Telescope grep_string<cr>", { desc = "Grep Word" })
+map("n", "<leader>fm", "<cmd>Telescope marks<cr>", { desc = "Marks" })
+map("n", "<leader>fk", "<cmd>Telescope keymaps<cr>", { desc = "Keymaps" })
+map("n", "<leader>fg", "<cmd>Telescope git_files<cr>", { desc = "Git Files" })
+map("n", "<leader>fs", "<cmd>Telescope git_status<cr>", { desc = "Git Status" })
+map("n", "<leader>fb", "<cmd>Telescope git_branches<cr>", { desc = "Git Branches" })
+map("n", "<leader>fc", "<cmd>Telescope git_commits<cr>", { desc = "Git Commits" })
+map("n", "<leader>fB", "<cmd>Telescope git_bcommits<cr>", { desc = "Buffer Commits" })
+map("n", "<leader>fS", "<cmd>Telescope git_stash<cr>", { desc = "Git Stash" })
