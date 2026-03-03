@@ -1,5 +1,9 @@
 # nvim
 
+<img width="1270" height="708" alt="Screenshot 2026-03-03 at 05 00 44" src="https://github.com/user-attachments/assets/138765d4-f832-45a6-836c-b9b47c38fc37" />
+
+<img width="1265" height="707" alt="Screenshot 2026-03-03 at 05 01 04" src="https://github.com/user-attachments/assets/b3c84c10-33ec-47bf-8465-55b86ec97c53" />
+
 My personal Neovim configuration -- the setup I actually use every day.
 
 This isn't a "Neovim distribution" or a framework. It's just how I like my editor. I'm sharing it because maybe you'll like some of the same things I do, and if so, I'd love to hear from you. Some of the best conversations start with "hey, I use that too btw."
