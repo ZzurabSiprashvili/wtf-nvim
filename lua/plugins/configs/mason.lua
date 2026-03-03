@@ -7,5 +7,7 @@ return {
     "jsonls",
     "cssls",
     "html",
+    "eslint",
+    "emmet_ls",
   },
 }
