@@ -3,6 +3,41 @@ return {
   -- Core
   { "nvim-lua/plenary.nvim", lazy = true },
 
+  -- LSP: Mason installs servers (no global installs needed)
+  {
+    "mason-org/mason-lspconfig.nvim",
+    lazy = false,
+    opts = function()
+      return require("plugins.configs.mason")
+    end,
+    dependencies = {
+      { "mason-org/mason.nvim", opts = {} },
+      "neovim/nvim-lspconfig",
+    },
+  },
+
+  -- Formatters & tools via Mason
+  {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    lazy = false,
+    opts = function()
+      return require("plugins.configs.mason-tools")
+    end,
+    dependencies = { "mason-org/mason.nvim" },
+  },
+
+  -- Treesitter
+  {
+    "nvim-treesitter/nvim-treesitter",
+    lazy = false,
+    build = ":TSUpdate",
+    config = function()
+      vim.api.nvim_create_autocmd("FileType", {
+        callback = function() pcall(vim.treesitter.start) end,
+      })
+    end,
+  },
+
   -- Completion
   {
     "saghen/blink.cmp",
@@ -168,4 +203,14 @@ return {
 
   -- Emmet
   { "olrtg/nvim-emmet", lazy = true },
+
+  -- Formatting (Prettier)
+  {
+    "stevearc/conform.nvim",
+    event = { "BufWritePre" },
+    cmd = { "ConformInfo" },
+    opts = function()
+      return require("plugins.configs.conform")
+    end,
+  },
 }

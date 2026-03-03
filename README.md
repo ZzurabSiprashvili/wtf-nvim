@@ -31,6 +31,7 @@ This config is built around a few ideas that matter to me:
 - **Git is a first-class citizen.** LazyGit, Diffview, Gitsigns -- I spend a lot of time in git and the editor should make that easy.
 - **Terminals belong in the editor.** Bottom splits, side splits, floating windows for Claude and Gemini. Python and Node REPLs on demand.
 - **Dark, high-contrast, no-nonsense look.** Noctis High Contrast colorscheme with custom tweaks to diff highlights and indent guides.
+- **No global installs for LSP or formatters.** Mason installs everything into Neovim's data directory -- tsgo, lua_ls, Prettier, black, gofumpt, and the rest. Your system stays clean.
 
 The leader key is `Space`. Most keybindings are designed to be discoverable through which-key -- just press `Space` and wait.
 
@@ -38,15 +39,19 @@ The leader key is `Space`. Most keybindings are designed to be discoverable thro
 
 ### Prerequisites
 
-- **Neovim** >= 0.10 (built with LuaJIT)
+- **Neovim** >= 0.11 (built with LuaJIT)
 - **Git** (for lazy.nvim and plugin installs)
+- A **C compiler** in your path (for treesitter parser compilation)
 - A [Nerd Font](https://www.nerdfonts.com/) installed and configured in your terminal
 - **ripgrep** (`rg`) for Telescope live grep and todo-comments search
-- Optional but recommended:
-  - [lazygit](https://github.com/jesseduffield/lazygit) for the LazyGit integration
-  - [yazi](https://github.com/sxyazi/yazi) for the Yazi file manager integration
-  - [claude](https://docs.anthropic.com/en/docs/claude-code) CLI for the Claude terminal
-  - [gemini](https://github.com/google-gemini/gemini-cli) CLI for the Gemini terminal
+
+LSP servers and formatters (tsgo, lua_ls, Prettier, black, etc.) are installed automatically via Mason -- no need to install Node, Python, or Go globally for them.
+
+Optional but recommended:
+- [lazygit](https://github.com/jesseduffield/lazygit) for the LazyGit integration
+- [yazi](https://github.com/sxyazi/yazi) for the Yazi file manager integration
+- [claude](https://docs.anthropic.com/en/docs/claude-code) CLI for the Claude terminal
+- [gemini](https://github.com/google-gemini/gemini-cli) CLI for the Gemini terminal
 
 ### Installation
 
@@ -69,7 +74,7 @@ Open Neovim and let lazy.nvim do its thing:
 nvim
 ```
 
-Plugins will auto-install on first launch. Grab a coffee or just watch the progress bar -- it's pretty quick.
+Plugins will auto-install on first launch. Mason will then install LSP servers and formatters in the background -- the first open of a JS file or similar might take a moment while tsgo finishes installing. Run `:Mason` to watch progress or manage packages.
 
 ### Project Structure
 
@@ -80,13 +85,20 @@ Plugins will auto-install on first launch. Grab a coffee or just watch the progr
 │   ├── options.lua             -- Editor settings (indentation, search, UI)
 │   ├── mappings.lua            -- Global keybindings + loads plugin mappings
 │   ├── commands.lua            -- Custom user commands (currently empty, yours to fill)
+│   ├── lsp.lua                 -- LSP keybindings (servers installed via Mason)
 │   └── plugins/
 │       ├── init.lua            -- Plugin specs for lazy.nvim
 │       ├── configs/            -- Plugin-specific configuration
-│       │   ├── ...
+│       │   ├── alpha.lua
+│       │   ├── blink.lua
+│       │   ├── conform.lua     -- Formatters (Prettier, stylua, black, gofumpt)
+│       │   ├── mason.lua       -- LSP servers to install
+│       │   ├── mason-tools.lua -- Formatters to install
+│       │   └── ...
 │       └── mappings/           -- Plugin-specific keybindings
 │           ├── init.lua
-│           ├── ....
+│           ├── conform.lua
+│           └── ...
 ```
 
 Each plugin gets its own config file and its own mapping file. If you want to tweak how Telescope behaves, you look in `plugins/configs/telescope.lua`. If you want to change its keybindings, you look in `plugins/mappings/telescope.lua`. No hunting through a giant monolith.
@@ -110,6 +122,11 @@ A few things about how the editor itself is configured (before plugins even ente
 | Plugin                                                                            | What it does                  | Details                            |
 | --------------------------------------------------------------------------------- | ----------------------------- | ---------------------------------- |
 | [lazy.nvim](https://github.com/folke/lazy.nvim)                                   | Plugin manager                | [read more](#lazynvim)             |
+| [mason.nvim](https://github.com/mason-org/mason.nvim)                             | LSP/formatter installer      | [read more](#masonnvim)            |
+| [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim)      | Mason + LSP bridge            | [read more](#mason-lspconfignvim)  |
+| [mason-tool-installer.nvim](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim) | Auto-install formatters   | [read more](#mason-tool-installernvim) |
+| [conform.nvim](https://github.com/stevearc/conform.nvim)                          | Code formatting              | [read more](#conformnvim)          |
+| [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)             | Treesitter parsers & highlighting | [read more](#nvim-treesitter)  |
 | [noctis-high-contrast.nvim](https://github.com/iagorrr/noctis-high-contrast.nvim) | Colorscheme                   | [read more](#noctis-high-contrast) |
 | [alpha-nvim](https://github.com/goolord/alpha-nvim)                               | Dashboard / start screen      | [read more](#alpha-nvim)           |
 | [bufferline.nvim](https://github.com/akinsho/bufferline.nvim)                     | Buffer tabs along the top     | [read more](#bufferlinenvim)       |
@@ -150,6 +167,60 @@ The plugin manager. It handles installing, updating, and lazy-loading everything
 A few built-in Neovim plugins are disabled for speed: `netrwPlugin`, `tarPlugin`, `tohtml`, `tutor`, and `zipPlugin`. The update checker runs silently in the background -- no pop-ups nagging you about new versions.
 
 Run `:Lazy` to see the dashboard, update plugins, profile startup time, or clean unused ones.
+
+---
+
+### mason.nvim
+
+Portable package manager that installs LSP servers, formatters, and linters into Neovim's data directory. Nothing goes in your system PATH or global npm/pip -- everything lives under `~/.local/share/nvim/`. Run `:Mason` to browse packages, install new ones, or update what you have.
+
+---
+
+### mason-lspconfig.nvim
+
+Bridges Mason with nvim-lspconfig. On first launch it installs the LSP servers listed in `plugins/configs/mason.lua` (tsgo, lua_ls, basedpyright, gopls, jsonls, cssls, html) and enables them automatically. Use `:LspInstall <server>` to add more.
+
+---
+
+### conform.nvim
+
+Lightweight formatter that runs Prettier, stylua, black, and gofumpt on your code. Formatters are installed via mason-tool-installer -- no global installs.
+
+| Key  | Mode           | Action                    |
+| ---- | -------------- | ------------------------- |
+| `++` | Normal, Visual | Format buffer or selection |
+
+Format-on-save is disabled by default. Enable it in `plugins/configs/conform.lua` if you want.
+
+**Formatters by filetype:** JS/TS/React (Prettier), JSON/HTML/CSS/SCSS/Markdown/YAML (Prettier), Lua (stylua), Python (black), Go (gofumpt).
+
+---
+
+### mason-tool-installer.nvim
+
+Auto-installs formatters and other tools via Mason on first launch. The list lives in `plugins/configs/mason-tools.lua`: prettier, stylua, black, gofumpt. Add more there if you need them.
+
+---
+
+### nvim-treesitter
+
+Provides tree-sitter parser management and the query files that power Neovim's built-in treesitter features. This config enables treesitter-based **syntax highlighting** for every filetype that has a parser installed -- it falls back silently for filetypes without one.
+
+Parsers are compiled from C on first install (that's why you need a C compiler), and `:TSUpdate` runs automatically whenever the plugin updates so your parsers stay in sync.
+
+To install a parser for a language you're working with:
+
+```vim
+:TSInstall rust javascript python lua
+```
+
+To see what's currently installed:
+
+```vim
+:TSInstall
+```
+
+The plugin does **not** lazy-load (as per official guidance) -- it needs to be available before any buffer is read so highlighting kicks in immediately.
 
 ---
 
@@ -476,11 +547,14 @@ Beyond the plugin-specific mappings listed above, here are the general keybindin
 | Key             | Mode           | Action                  |
 | --------------- | -------------- | ----------------------- |
 | `Escape`        | Normal         | Clear search highlight  |
+| `++`            | Normal, Visual | Format buffer/selection |
 | `Shift+h/j/k/l` | Normal         | Navigate between splits |
 | `Space \|`      | Normal         | Vertical split          |
 | `Space -`       | Normal         | Horizontal split        |
 | `Space /`       | Normal, Visual | Toggle comment          |
 | `Space w`       | Normal         | Close current buffer    |
+
+**LSP keybindings** (when a language server is attached): `gd` (definition), `gr` (references), `K` (hover), `Space r n` (rename), `Space c a` (code actions), `[d` / `]d` (prev/next diagnostic).
 
 ## Acknowledgments
 

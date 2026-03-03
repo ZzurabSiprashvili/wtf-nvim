@@ -28,4 +28,5 @@ require("lazy").setup(require("plugins"), {
   },
 })
 
+require("lsp")
 vim.cmd.colorscheme("noctishc")
