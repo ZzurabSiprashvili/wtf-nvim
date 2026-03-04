@@ -32,11 +32,7 @@ return {
 		lazy = false,
 		build = ":TSUpdate",
 		config = function()
-			vim.api.nvim_create_autocmd("FileType", {
-				callback = function()
-					pcall(vim.treesitter.start)
-				end,
-			})
+			require("nvim-treesitter").setup(require("plugins.configs.treesitter"))
 		end,
 	},
 
