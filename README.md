@@ -1,8 +1,7 @@
 # nvim
 
-<img width="1270" height="708" alt="Screenshot 2026-03-03 at 05 00 44" src="https://github.com/user-attachments/assets/138765d4-f832-45a6-836c-b9b47c38fc37" />
+<img width="1490" height="912" alt="Screenshot 2026-03-05 at 17 31 00" src="https://github.com/user-attachments/assets/4ec40a22-2114-4bbc-b552-49d675791b85" />
 
-<img width="1265" height="707" alt="Screenshot 2026-03-03 at 05 01 04" src="https://github.com/user-attachments/assets/b3c84c10-33ec-47bf-8465-55b86ec97c53" />
 
 My personal Neovim configuration -- the setup I actually use every day.
 
