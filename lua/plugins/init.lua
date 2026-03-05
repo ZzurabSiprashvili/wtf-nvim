@@ -31,8 +31,10 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		lazy = false,
 		build = ":TSUpdate",
+		version = false, -- last release is way too old
+		event = { "BufReadPost", "BufNewFile" }, -- Lazy load on file open
 		config = function()
-			require("nvim-treesitter").setup(require("plugins.configs.treesitter"))
+			require("plugins.configs.treesitter")
 		end,
 	},
 
