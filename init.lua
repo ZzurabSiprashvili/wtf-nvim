@@ -29,4 +29,4 @@ require("lazy").setup(require("plugins"), {
 })
 
 require("lsp")
-vim.cmd.colorscheme("noctishc")
+vim.cmd.colorscheme("monokai-night")

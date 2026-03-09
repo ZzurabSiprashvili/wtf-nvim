@@ -17,6 +17,7 @@
   "mason-lspconfig.nvim": { "branch": "main", "commit": "a324581a3c83fdacdb9804b79de1cbe00ce18550" },
   "mason-tool-installer.nvim": { "branch": "main", "commit": "443f1ef8b5e6bf47045cb2217b6f748a223cf7dc" },
   "mason.nvim": { "branch": "main", "commit": "44d1e90e1f66e077268191e3ee9d2ac97cc18e65" },
+  "monokai-night.nvim": { "branch": "main", "commit": "e1c04052f7a7bc63cede260aa3d50ffc6002427e" },
   "neo-tree.nvim": { "branch": "v3.x", "commit": "9d6826582a3e8c84787bd7355df22a2812a1ad59" },
   "noctis-high-contrast.nvim": { "branch": "main", "commit": "f7c24adb2cd0eca9cf5e9d0fa6595512f82cf450" },
   "nui.nvim": { "branch": "main", "commit": "de740991c12411b663994b2860f1a4fd0937c130" },
