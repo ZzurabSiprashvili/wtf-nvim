@@ -1,6 +1,6 @@
 # nvim
 
-<img width="1490" height="912" alt="Screenshot 2026-03-05 at 17 31 00" src="https://github.com/user-attachments/assets/4ec40a22-2114-4bbc-b552-49d675791b85" />
+<img width="1780" height="1113" alt="Screenshot 2026-03-09 at 16 23 46" src="https://github.com/user-attachments/assets/f7e4bbb3-fd72-4862-8d88-be6e1f25b720" />
 
 
 My personal Neovim configuration -- the setup I actually use every day.
