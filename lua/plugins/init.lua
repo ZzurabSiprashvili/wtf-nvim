@@ -55,6 +55,8 @@ return {
 	-- Colorscheme
 	{ "iagorrr/noctis-high-contrast.nvim", lazy = false, priority = 1000 },
 	{ "ZzurabSiprashvili/monokai-night.nvim", lazy = false, priority = 1000 },
+	{ "polirritmico/monokai-nightasty.nvim", lazy = false, priority = 1000 },
+	{ "vinitkumar/monokai-pro-vim", lazy = false, priority = 1000 },
 
 	-- Bufferline
 	{

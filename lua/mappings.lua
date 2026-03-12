@@ -2,6 +2,7 @@ local map = vim.keymap.set
 
 -- General
 map("n", "<Esc>", "<cmd>nohlsearch<CR>")
+map("n", "<S-Tab>", function() vim.notify(vim.fn.expand("%:.")) end, { desc = "Show current file path" })
 
 -- Window navigation
 map("n", "<S-h>", "<C-w>h", { desc = "Move to left split" })

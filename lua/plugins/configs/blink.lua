@@ -3,7 +3,7 @@ return {
   cmdline = { enabled = true },
   appearance = { nerd_font_variant = "normal" },
   fuzzy = { implementation = "prefer_rust" },
-  sources = { default = { "buffer", "path" } },
+  sources = { default = { "lsp", "path", "snippets", "buffer" } },
 
   keymap = {
     preset = "default",
