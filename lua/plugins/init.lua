@@ -180,6 +180,17 @@ return {
 	-- Which-key
 	{ "folke/which-key.nvim", event = "VeryLazy" },
 
+	-- Notifications
+	{
+		"rcarriga/nvim-notify",
+		lazy = false,
+		config = function()
+			local notify = require("notify")
+			notify.setup({})
+			vim.notify = notify
+		end,
+	},
+
 	-- Terminal
 	{ "akinsho/toggleterm.nvim", lazy = true },
 
@@ -214,6 +225,21 @@ return {
 		cmd = { "ConformInfo" },
 		opts = function()
 			return require("plugins.configs.conform")
+		end,
+	},
+
+	-- SQL runner
+	{
+		"ZzurabSiprashvili/run-sql.nvim",
+		dependencies = {
+			"ZzurabSiprashvili/run-sql-postgresql-adapter.nvim",
+		},
+		config = function()
+			local run_sql = require("run-sql")
+			run_sql.setup()
+			
+			-- Register PostgreSQL adapter
+			run_sql.register_adapter("postgresql", require("run-sql-postgresql-adapter"))
 		end,
 	},
 }
