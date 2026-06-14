@@ -1,7 +1,7 @@
 return {
 	-- { "karb94/neoscroll.nvim", enabled = false, event = "VeryLazy" },
 
-	{ "sphamba/smear-cursor.nvim", event = "VeryLazy", opts = {} },
+	-- { "sphamba/smear-cursor.nvim", event = "VeryLazy", opts = {} },
 
 	{
 		"goolord/alpha-nvim",
@@ -11,13 +11,13 @@ return {
 		end,
 	},
 
-	{
-		"nvimdev/indentmini.nvim",
-		event = { "BufReadPre", "BufNewFile" },
-		config = function()
-			require("configs.indentmini")
-		end,
-	},
+	-- {
+	-- 	"nvimdev/indentmini.nvim",
+	-- 	event = { "BufReadPre", "BufNewFile" },
+	-- 	config = function()
+	-- 		require("configs.indentmini")
+	-- 	end,
+	-- },
 
 	{
 		"nvim-lualine/lualine.nvim",
@@ -32,16 +32,16 @@ return {
 	},
 
 	{ "ZzurabSiprashvili/monokai-night.nvim", lazy = false, priority = 1000 },
-
-	{
-		"nvim-treesitter/nvim-treesitter",
-		lazy = false,
-		build = ":TSUpdate",
-		version = false,
-		event = { "BufReadPost", "BufNewFile" },
-		config = function()
-			require("configs.treesitter")
-		end,
-	},
+  
+	-- {
+	-- 	"nvim-treesitter/nvim-treesitter",
+	-- 	lazy = false,
+	-- 	build = ":TSUpdate",
+	-- 	version = false,
+	-- 	event = { "BufReadPost", "BufNewFile" },
+	-- 	config = function()
+	-- 		require("configs.treesitter")
+	-- 	end,
+	-- },
 }
 

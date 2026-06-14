@@ -62,7 +62,6 @@ return {
 		"cssls",
 		"html",
 		"eslint",
-		"emmet_ls",
 		"rust_analyzer",
 	},
 	handlers = {

@@ -4,12 +4,12 @@ return {
 		cmd = "Telescope",
 		opts = require("configs.telescope"),
 	},
-	{
-		"nvim-neo-tree/neo-tree.nvim",
-		branch = "v3.x",
-		cmd = "Neotree",
-		opts = require("configs.neotree"),
-	},
+	-- {
+	-- 	"nvim-neo-tree/neo-tree.nvim",
+	-- 	branch = "v3.x",
+	-- 	cmd = "Neotree",
+	-- 	opts = require("configs.neotree"),
+	-- },
 	{
 		"mikavilpas/yazi.nvim",
 		cmd = "Yazi",
@@ -38,7 +38,7 @@ return {
 		end,
 	},
 	{ "folke/trouble.nvim", cmd = "Trouble", opts = {} },
-	{ "hedyhli/outline.nvim", cmd = "Outline", opts = {} },
+	-- { "hedyhli/outline.nvim", cmd = "Outline", opts = {} },
 
 	{
 		"folke/todo-comments.nvim",
@@ -47,7 +47,7 @@ return {
 		opts = require("configs.todo-comments"),
 	},
 
-	{ "folke/which-key.nvim", event = "VeryLazy" },
+	-- { "folke/which-key.nvim", event = "VeryLazy" },
 
 	{
 		"stevearc/conform.nvim",
@@ -66,18 +66,19 @@ return {
 			return require("configs.blink")
 		end,
 	},
+
 	{ "chentoast/marks.nvim", event = "VeryLazy", opts = {} },
 
-	{
-		"rcarriga/nvim-notify",
-		lazy = false,
-		config = function()
-			local notify = require("notify")
-			notify.setup({})
-			vim.notify = notify
-		end,
-	},
-
+	-- {
+	-- 	"rcarriga/nvim-notify",
+	-- 	lazy = false,
+	-- 	config = function()
+	-- 		local notify = require("notify")
+	-- 		notify.setup({})
+	-- 		vim.notify = notify
+	-- 	end,
+	-- },
+	--
 	{ "akinsho/toggleterm.nvim", lazy = true },
 }
 
