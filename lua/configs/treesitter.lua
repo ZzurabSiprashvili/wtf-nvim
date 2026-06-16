@@ -1,7 +1,21 @@
 local treesitter = require("nvim-treesitter")
 
 treesitter.setup({
-	ensure_installed = { "lua", "vim", "vimdoc", "javascript", "typescript", "tsx", "html", "css", "json", "yaml", "rust" },
+	ensure_installed = {
+		"lua",
+		"vim",
+		"vimdoc",
+		"javascript",
+		"typescript",
+		"tsx",
+		"html",
+		"css",
+		"json",
+		"yaml",
+		"rust",
+		"python",
+		"go",
+	},
 	auto_install = true,
 	highlight = {
 		enable = true,
@@ -19,3 +33,4 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.treesitter.start(args.buf)
 	end,
 })
+

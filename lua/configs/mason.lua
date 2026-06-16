@@ -2,7 +2,6 @@ local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 vim.opt.updatetime = 300
 
-local seen_msg
 vim.diagnostic.config({
 	virtual_text = false,
 	signs = true,
@@ -13,24 +12,27 @@ vim.diagnostic.config({
 		header = "",
 		prefix = "",
 		format = function(d)
-			local msg = d.message:gsub("%s+", " "):gsub("^%s*(.-)%s*$", "%1")
-			-- Strip source prefix for dedup (e.g. "ts: msg" and "typescript: msg" -> same)
-			local core = msg:gsub("^[%w_-]+:%s*", "")
-			if seen_msg == core then
-				return nil
-			end
-			seen_msg = core
 			return d.message
 		end,
 	},
 })
 
-
-local orig_open_float = vim.diagnostic.open_float
-function vim.diagnostic.open_float(opts, ...)
-	seen_msg = nil
-	return orig_open_float(opts, ...)
+local function on_attach(client, _)
+	client.server_capabilities.semanticTokensProvider = nil
 end
+
+-- Show diagnostic float on cursor hold (hover) when line has diagnostics
+vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+	callback = function()
+		local bufnr = vim.api.nvim_get_current_buf()
+		local line = vim.api.nvim_win_get_cursor(0)[1] - 1
+		local diags = vim.diagnostic.get(bufnr, { lnum = line })
+		if #diags > 0 then
+			vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" })
+		end
+	end,
+})
+
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(ev)
@@ -50,7 +52,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		end
 	end,
 })
-
 
 return {
 	ensure_installed = {

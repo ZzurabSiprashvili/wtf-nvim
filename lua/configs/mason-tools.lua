@@ -7,5 +7,6 @@ return {
 		"rustfmt",
 		"codelldb",
 		"debugpy",
+		"ruff",
 	},
 }
