@@ -3,4 +3,3 @@ return {
 	{ "nvim-lua/plenary.nvim", commit = "74b06c6c75e4eeb3108ec01852001636d85a932b", lazy = true },
 	{ "MunifTanjim/nui.nvim", commit = "de740991c12411b663994b2860f1a4fd0937c130", lazy = true },
 }
-

@@ -42,8 +42,8 @@ vim.g.python3_host_prog = vim.fn.exepath("python3")
 
 -- Theme highlight overrides
 vim.api.nvim_create_autocmd("ColorScheme", {
-  group = vim.api.nvim_create_augroup("UserHighlights", { clear = true }),
-  callback = function()
-    vim.api.nvim_set_hl(0, "PmenuSel", { fg = "#ff669c", bg = "#1a1a1a" })
-  end,
+	group = vim.api.nvim_create_augroup("UserHighlights", { clear = true }),
+	callback = function()
+		vim.api.nvim_set_hl(0, "PmenuSel", { fg = "#ff669c", bg = "#1a1a1a" })
+	end,
 })

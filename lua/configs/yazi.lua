@@ -1,6 +1,6 @@
 return {
-  open_for_directories = false,
-  keymaps = {
-    show_help = "<f1>",
-  },
+	open_for_directories = false,
+	keymaps = {
+		show_help = "<f1>",
+	},
 }

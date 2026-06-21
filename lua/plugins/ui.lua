@@ -1,7 +1,7 @@
 return {
-	-- { "karb94/neoscroll.nvim", enabled = false, event = "VeryLazy" },
+	{ "karb94/neoscroll.nvim", enabled = false, event = "VeryLazy" },
 
-	-- { "sphamba/smear-cursor.nvim", event = "VeryLazy", opts = {} },
+	{ "sphamba/smear-cursor.nvim", event = "VeryLazy", opts = {} },
 
 	{
 		"goolord/alpha-nvim",
@@ -12,13 +12,13 @@ return {
 		end,
 	},
 
-	-- {
-	-- 	"nvimdev/indentmini.nvim",
-	-- 	event = { "BufReadPre", "BufNewFile" },
-	-- 	config = function()
-	-- 		require("configs.indentmini")
-	-- 	end,
-	-- },
+	{
+		"nvimdev/indentmini.nvim",
+		event = { "BufReadPre", "BufNewFile" },
+		config = function()
+			require("configs.indentmini")
+		end,
+	},
 
 	{
 		"nvim-lualine/lualine.nvim",
@@ -34,17 +34,21 @@ return {
 		opts = {},
 	},
 
-	{ "ZzurabSiprashvili/monokai-night.nvim", commit = "008a48c5d1ff0258ec7246d3f243b6308248b7db", lazy = false, priority = 1000 },
-  
-	-- {
-	-- 	"nvim-treesitter/nvim-treesitter",
-	-- 	lazy = false,
-	-- 	build = ":TSUpdate",
-	-- 	version = false,
-	-- 	event = { "BufReadPost", "BufNewFile" },
-	-- 	config = function()
-	-- 		require("configs.treesitter")
-	-- 	end,
-	-- },
-}
+	{
+		"ZzurabSiprashvili/monokai-night.nvim",
+		commit = "008a48c5d1ff0258ec7246d3f243b6308248b7db",
+		lazy = false,
+		priority = 1000,
+	},
 
+	{
+		"nvim-treesitter/nvim-treesitter",
+		lazy = false,
+		build = ":TSUpdate",
+		version = false,
+		event = { "BufReadPost", "BufNewFile" },
+		config = function()
+			require("configs.treesitter")
+		end,
+	},
+}
