@@ -1,11 +1,12 @@
 return {
 	{ "karb94/neoscroll.nvim", enabled = false, event = "VeryLazy" },
 
-	{ "sphamba/smear-cursor.nvim", event = "VeryLazy", opts = {} },
+	{ "sphamba/smear-cursor.nvim", enabled=false, event = "VeryLazy", opts = {} },
 
 	{
 		"goolord/alpha-nvim",
 		commit = "6c6a89d5b068b5251c8bdf0dd57bb921bcfeeb09",
+    enabled = false,
 		lazy = false,
 		config = function()
 			require("configs.alpha")
@@ -15,6 +16,7 @@ return {
 	{
 		"nvimdev/indentmini.nvim",
 		event = { "BufReadPre", "BufNewFile" },
+    enabled = false,
 		config = function()
 			require("configs.indentmini")
 		end,

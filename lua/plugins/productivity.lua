@@ -7,6 +7,7 @@ return {
 	},
 	{
 		"nvim-neo-tree/neo-tree.nvim",
+    enabled = true,
 		branch = "v3.x",
 		cmd = "Neotree",
 		opts = require("configs.neotree"),
@@ -19,6 +20,7 @@ return {
 	},
 	{
 		"folke/flash.nvim",
+    enabled = false,
 		commit = "fcea7ff883235d9024dc41e638f164a450c14ca2",
 		event = "VeryLazy",
 		vscode = true,
@@ -44,17 +46,18 @@ return {
 		end,
 	},
 	{ "folke/trouble.nvim", commit = "bd67efe408d4816e25e8491cc5ad4088e708a69a", cmd = "Trouble", opts = {} },
-	{ "hedyhli/outline.nvim", cmd = "Outline", opts = {} },
+	{ "hedyhli/outline.nvim", enabled = false, cmd = "Outline", opts = {} },
 
 	{
 		"folke/todo-comments.nvim",
+    enabled = false,
 		commit = "31e3c38ce9b29781e4422fc0322eb0a21f4e8668",
 		cmd = { "TodoTrouble", "TodoTelescope" },
 		event = "VeryLazy",
 		opts = require("configs.todo-comments"),
 	},
 
-	{ "folke/which-key.nvim", event = "VeryLazy" },
+	{ "folke/which-key.nvim",  enabled = false, event = "VeryLazy" },
 
 	{
 		"stevearc/conform.nvim",
@@ -75,11 +78,18 @@ return {
 		end,
 	},
 
-	{ "chentoast/marks.nvim", commit = "f353e8c08c50f39e99a9ed474172df7eddd89b72", event = "VeryLazy", opts = {} },
+	{
+		"chentoast/marks.nvim",
+		commit = "f353e8c08c50f39e99a9ed474172df7eddd89b72",
+		event = "VeryLazy",
+		enabled = false,
+		opts = {},
+	},
 
 	{
 		"rcarriga/nvim-notify",
 		lazy = false,
+    enabled = false,
 		config = function()
 			local notify = require("notify")
 			notify.setup({})
