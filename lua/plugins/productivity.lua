@@ -7,7 +7,7 @@ return {
 	},
 	{
 		"nvim-neo-tree/neo-tree.nvim",
-    enabled = true,
+		enabled = true,
 		branch = "v3.x",
 		cmd = "Neotree",
 		opts = require("configs.neotree"),
@@ -20,7 +20,7 @@ return {
 	},
 	{
 		"folke/flash.nvim",
-    enabled = false,
+		enabled = false,
 		commit = "fcea7ff883235d9024dc41e638f164a450c14ca2",
 		event = "VeryLazy",
 		vscode = true,
@@ -39,6 +39,7 @@ return {
 
 	{
 		"sindrets/diffview.nvim",
+		enabled = false,
 		commit = "4516612fe98ff56ae0415a259ff6361a89419b0a",
 		cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles", "DiffviewFileHistory" },
 		config = function()
@@ -50,14 +51,14 @@ return {
 
 	{
 		"folke/todo-comments.nvim",
-    enabled = false,
+		enabled = false,
 		commit = "31e3c38ce9b29781e4422fc0322eb0a21f4e8668",
 		cmd = { "TodoTrouble", "TodoTelescope" },
 		event = "VeryLazy",
 		opts = require("configs.todo-comments"),
 	},
 
-	{ "folke/which-key.nvim",  enabled = false, event = "VeryLazy" },
+	{ "folke/which-key.nvim", enabled = true, event = "VeryLazy" },
 
 	{
 		"stevearc/conform.nvim",
@@ -89,7 +90,7 @@ return {
 	{
 		"rcarriga/nvim-notify",
 		lazy = false,
-    enabled = false,
+		enabled = false,
 		config = function()
 			local notify = require("notify")
 			notify.setup({})
