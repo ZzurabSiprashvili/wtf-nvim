@@ -15,6 +15,7 @@ treesitter.setup({
 		"rust",
 		"python",
 		"go",
+		"helm",
 	},
 	auto_install = true,
 	highlight = {

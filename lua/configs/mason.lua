@@ -48,9 +48,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		local client = vim.lsp.get_client_by_id(ev.data.client_id)
 		if client then
 			client.server_capabilities.semanticTokensProvider = nil
+			if client:supports_method("textDocument/inlayHint") then
+				vim.lsp.inlay_hint.enable(true, { bufnr = ev.buf })
+			end
 		end
 	end,
 })
+
+vim.api.nvim_create_user_command("InlayHintsToggle", function()
+	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = 0 }), { bufnr = 0 })
+end, {})
 
 return {
 	ensure_installed = {
@@ -63,12 +70,52 @@ return {
 		"html",
 		"eslint",
 		"rust_analyzer",
+		"yamlls",
+		"helm_ls",
 	},
 	handlers = {
 		function(server_name)
 			require("lspconfig")[server_name].setup({
 				capabilities = capabilities,
 				on_attach = on_attach,
+			})
+		end,
+		rust_analyzer = function()
+			require("lspconfig").rust_analyzer.setup({
+				capabilities = capabilities,
+				on_attach = on_attach,
+				settings = {
+					["rust-analyzer"] = {
+						inlayHints = {
+							typeHints = { enable = true },
+							parameterHints = { enable = true },
+							chainingHints = { enable = true },
+							closingBraceHints = { enable = true, minLines = 25 },
+						},
+					},
+				},
+			})
+		end,
+		yamlls = function()
+			require("lspconfig").yamlls.setup({
+				capabilities = capabilities,
+				on_attach = on_attach,
+				settings = {
+					redhat = { telemetry = { enabled = false } },
+					yaml = {
+						format = { enable = true },
+						schemaStore = {
+							enable = true,
+							url = "https://www.schemastore.org/api/json/catalog.json",
+						},
+						schemas = {
+							["https://json.schemastore.org/kustomization.json"] = "/kustomization.yaml",
+							["https://json.schemastore.org/docker-compose.json"] = "docker-compose*.{yaml,yml}",
+							["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+							kubernetes = "**",
+						},
+					},
+				},
 			})
 		end,
 	},
