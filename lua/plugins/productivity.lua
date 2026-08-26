@@ -73,7 +73,7 @@ return {
 	{
 		"saghen/blink.cmp",
 		commit = "78336bc89ee5365633bcf754d93df01678b5c08f",
-		event = "InsertEnter",
+		lazy = false,
 		opts = function()
 			return require("configs.blink")
 		end,

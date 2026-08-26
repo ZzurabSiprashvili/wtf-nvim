@@ -4,7 +4,6 @@ return {
 		"stylua",
 		"black",
 		"gofumpt",
-		"rustfmt",
 		"codelldb",
 		"debugpy",
 		"ruff",

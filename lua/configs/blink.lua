@@ -4,14 +4,7 @@ return {
 	appearance = { nerd_font_variant = "normal" },
 	fuzzy = { implementation = "prefer_rust" },
 	sources = {
-		default = { "lsp", "path" },
-		providers = {
-			crates = {
-				name = "crates",
-				module = "crates",
-				score_offset = 100,
-			},
-		},
+		default = { "lsp", "path", "snippets", },
 	},
 	keymap = {
 		preset = "default",

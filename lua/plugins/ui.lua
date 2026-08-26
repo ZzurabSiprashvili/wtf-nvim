@@ -1,7 +1,7 @@
 return {
 	{ "karb94/neoscroll.nvim", enabled = false, event = "VeryLazy" },
 
-	{ "sphamba/smear-cursor.nvim", enabled=false, event = "VeryLazy", opts = {} },
+	{ "sphamba/smear-cursor.nvim", enabled=true, event = "VeryLazy", opts = {} },
 
 	{
 		"goolord/alpha-nvim",
