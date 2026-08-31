@@ -3,7 +3,7 @@ return {
 		"mfussenegger/nvim-dap",
 		commit = "9e848e09a697ee95302a3ef2dd43fd6eb709e570",
 		lazy = false,
-		enabled = false,
+		enabled = true,
 		dependencies = {
 			{
 				"rcarriga/nvim-dap-ui",

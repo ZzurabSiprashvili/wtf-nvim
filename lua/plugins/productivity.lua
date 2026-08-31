@@ -20,7 +20,7 @@ return {
 	},
 	{
 		"folke/flash.nvim",
-		enabled = false,
+		enabled = true,
 		commit = "fcea7ff883235d9024dc41e638f164a450c14ca2",
 		event = "VeryLazy",
 		vscode = true,
@@ -39,7 +39,7 @@ return {
 
 	{
 		"sindrets/diffview.nvim",
-		enabled = false,
+		enabled = true,
 		commit = "4516612fe98ff56ae0415a259ff6361a89419b0a",
 		cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles", "DiffviewFileHistory" },
 		config = function()
@@ -51,7 +51,7 @@ return {
 
 	{
 		"folke/todo-comments.nvim",
-		enabled = false,
+		enabled = true,
 		commit = "31e3c38ce9b29781e4422fc0322eb0a21f4e8668",
 		cmd = { "TodoTrouble", "TodoTelescope" },
 		event = "VeryLazy",
@@ -83,7 +83,7 @@ return {
 		"chentoast/marks.nvim",
 		commit = "f353e8c08c50f39e99a9ed474172df7eddd89b72",
 		event = "VeryLazy",
-		enabled = false,
+		enabled = true,
 		opts = {},
 	},
 
