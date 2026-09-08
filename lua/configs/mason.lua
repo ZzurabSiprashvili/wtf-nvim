@@ -54,6 +54,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		local client = vim.lsp.get_client_by_id(ev.data.client_id)
 		if client then
 			client.server_capabilities.semanticTokensProvider = nil
+			if client.name == "biome" then
+				client.server_capabilities.documentFormattingProvider = nil
+				client.server_capabilities.documentRangeFormattingProvider = nil
+			end
 		end
 	end,
 })
@@ -101,6 +105,7 @@ return {
 		"cssls",
 		"html",
 		"eslint",
+		"biome",
 		"rust_analyzer",
 		"yamlls",
 		"helm_ls",
