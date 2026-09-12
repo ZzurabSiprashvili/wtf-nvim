@@ -8,5 +8,6 @@ return {
 		"codelldb",
 		"debugpy",
 		"ruff",
+		"buf",
 	},
 }

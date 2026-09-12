@@ -109,5 +109,6 @@ return {
 		"rust_analyzer",
 		"yamlls",
 		"helm_ls",
+		"buf_ls",
 	},
 }

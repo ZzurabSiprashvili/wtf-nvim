@@ -16,6 +16,7 @@ treesitter.setup({
 		"python",
 		"go",
 		"helm",
+		"proto",
 	},
 	auto_install = true,
 	highlight = {

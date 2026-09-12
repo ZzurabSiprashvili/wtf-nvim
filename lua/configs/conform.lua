@@ -46,6 +46,7 @@ return {
 		python = { "ruff_format", "ruff_fix", "ruff_organize_imports" },
 		go = { "gofumpt" },
 		rust = { "rustfmt" },
+		proto = { "buf" },
 	},
 	-- format_on_save = {
 	--   timeout_ms = 500,
