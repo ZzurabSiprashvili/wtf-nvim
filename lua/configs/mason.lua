@@ -1,5 +1,7 @@
 local capabilities = require("blink.cmp").get_lsp_capabilities()
 
+require("configs.inlay")
+
 vim.lsp.config("*", { capabilities = capabilities })
 
 vim.opt.updatetime = 300
@@ -60,23 +62,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			end
 		end
 	end,
-})
-
-vim.api.nvim_create_user_command("InlayHintsToggle", function()
-	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = 0 }), { bufnr = 0 })
-end, {})
-
-vim.lsp.config("rust_analyzer", {
-	settings = {
-		["rust-analyzer"] = {
-			inlayHints = {
-				typeHints = { enable = true },
-				parameterHints = { enable = true },
-				chainingHints = { enable = true },
-				closingBraceHints = { enable = true, minLines = 25 },
-			},
-		},
-	},
 })
 
 vim.lsp.config("yamlls", {

@@ -5,8 +5,6 @@ return {
 		"stylua",
 		"black",
 		"gofumpt",
-		"codelldb",
-		"debugpy",
 		"ruff",
 		"buf",
 	},
