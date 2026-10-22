@@ -3,7 +3,7 @@ return {
 
 	{
 		"sphamba/smear-cursor.nvim",
-		enabled = true,
+		enabled = false,
 		event = "VeryLazy",
 		opts = {
 			smear_between_adjacent_lines = false,
