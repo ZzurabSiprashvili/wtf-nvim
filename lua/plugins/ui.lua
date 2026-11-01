@@ -3,6 +3,7 @@ return {
 
 	{
 		"sphamba/smear-cursor.nvim",
+		commit = "9e9378d6ee34bb3782e0e8c63d9ec8ca618b479b",
 		enabled = false,
 		event = "VeryLazy",
 		opts = {
@@ -26,6 +27,7 @@ return {
 
 	{
 		"nvimdev/indentmini.nvim",
+		commit = "38572ce5a7a064a5deb89d6d861b7c40fc929ab1",
 		event = { "BufReadPre", "BufNewFile" },
     enabled = true,
 		config = function()
@@ -56,8 +58,8 @@ return {
 
 	{
 		"nvim-treesitter/nvim-treesitter",
+		commit = "5cb0114e6242625db56dd6440e945ed1ece10bc7",
 		build = ":TSUpdate",
-		version = false,
 		event = { "BufReadPost", "BufNewFile" },
 		config = function()
 			require("configs.treesitter")

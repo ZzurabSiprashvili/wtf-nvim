@@ -4,6 +4,7 @@ neotest.setup({
 	adapters = {
 		-- Uses `cargo nextest`; requires the cargo-nextest binary.
 		require("neotest-rust"),
+		require("neotest-go"),
 	},
 })
 

@@ -9,6 +9,7 @@ return {
 		"nvim-neo-tree/neo-tree.nvim",
 		enabled = true,
 		branch = "v3.x",
+		commit = "1a14083046d96e88e361d1da00761c40d45012f3",
 		cmd = "Neotree",
 		opts = require("configs.neotree"),
 	},
@@ -47,7 +48,13 @@ return {
 		end,
 	},
 	{ "folke/trouble.nvim", commit = "bd67efe408d4816e25e8491cc5ad4088e708a69a", cmd = "Trouble", opts = {} },
-	{ "hedyhli/outline.nvim", enabled = false, cmd = "Outline", opts = {} },
+	{
+		"hedyhli/outline.nvim",
+		commit = "2a132953b944561d45b52e4541ebfff71934a742",
+		enabled = false,
+		cmd = "Outline",
+		opts = {},
+	},
 
 	{
 		"folke/todo-comments.nvim",
@@ -58,7 +65,7 @@ return {
 		opts = require("configs.todo-comments"),
 	},
 
-	{ "folke/which-key.nvim", enabled = true, event = "VeryLazy" },
+	{ "folke/which-key.nvim", commit = "3aab2147e74890957785941f0c1ad87d0a44c15a", enabled = true, event = "VeryLazy" },
 
 	{
 		"stevearc/conform.nvim",
@@ -99,4 +106,25 @@ return {
 	},
 
 	{ "akinsho/toggleterm.nvim", commit = "9a88eae817ef395952e08650b3283726786fb5fb", lazy = true },
+
+	{
+		"georgeguimaraes/review.nvim",
+		commit = "46fa59f63d71c883baf1f0f89cf52f91b42eaeb0",
+		dependencies = {
+			{ "esmuellert/codediff.nvim", commit = "09d9ebef2cc5a5c04db7a349cd6c61bdf84ecc8e" },
+			{ "MunifTanjim/nui.nvim", commit = "de740991c12411b663994b2860f1a4fd0937c130" },
+		},
+		event = "VeryLazy",
+		keys = {
+			{ "<leader>rr", "<cmd>Review<cr>", desc = "Review working tree" },
+			{ "<leader>rc", "<cmd>Review commits<cr>", desc = "Review commits" },
+			{ "<leader>rb", "<cmd>Review branch<cr>", desc = "Review branch" },
+			-- rN, not rn: <leader>rn is already LSP rename (see configs/mason.lua)
+			{ "<leader>rN", ":Review note<cr>", mode = { "n", "v" }, desc = "Review: note here" },
+			{ "<leader>re", "<cmd>Review edit<cr>", desc = "Review: edit comment" },
+			{ "<leader>rd", "<cmd>Review delete<cr>", desc = "Review: delete comment" },
+			{ "<leader>rx", "<cmd>Review export<cr>", desc = "Review: export" },
+		},
+		opts = {},
+	},
 }
