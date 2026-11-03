@@ -127,4 +127,9 @@ return {
 		},
 		opts = {},
 	},
+	{
+		"ZzurabSiprashvili/switch.nvim",
+		lazy = false,
+		opts = require("configs.switch"),
+	},
 }
